@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc",
-    "prepublish": "npm run build && cp ./dist/migrations/* ..",
+    "prepublish": "npm run build",
      "migration:run": "typeorm migration:run -d ./src/config/ormconfig.ts"
    },
   "dependencies": {
