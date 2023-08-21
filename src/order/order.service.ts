@@ -43,6 +43,11 @@ export class OrderService {
   findOne(id: string) {
     return `This action returns a #${id} order`;
   }
+  findByUserID(user_id: string) {
+    return this.orderRepo.find({
+      where: { user_id },
+    });
+  }
 
   update(id: string, updateOrderDto: UpdateOrderDto) {
     console.info(updateOrderDto);
