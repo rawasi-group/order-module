@@ -6,7 +6,7 @@ export class Transaction_log {
   id: number;
 
   @Column()
-  transaction_id: number;
+  transaction_id: string;
 
   @Column({ type: 'text' })
   response: string;

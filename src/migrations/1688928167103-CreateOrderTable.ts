@@ -8,7 +8,7 @@ export class CreateOrderTable1688928167103 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int4',
+            type: 'string',
             isPrimary: true,
             isGenerated: true,
             generationStrategy: 'increment',
@@ -22,6 +22,35 @@ export class CreateOrderTable1688928167103 implements MigrationInterface {
             name: 'status',
             type: 'int4',
             isNullable: false,
+          },
+          {
+            name: 'user_id',
+            type: 'string',
+            isNullable: false,
+          },
+          {
+            name: 'reference_id',
+            type: 'string',
+            isNullable: false,
+          },
+          {
+            name: 'createdAt',
+            type: 'timestamp',
+            isNullable: false,
+            default: () => 'CURRENT_TIMESTAMP(6)',
+          },
+          {
+            name: 'updatedAt',
+            type: 'timestamp',
+            isNullable: false,
+            default: () => 'CURRENT_TIMESTAMP(6)',
+            onUpdate: 'CURRENT_TIMESTAMP(6)',
+          },
+          {
+            name: 'deletedAt',
+            type: 'timestamp',
+            isNullable: true,
+            default: null,
           },
         ],
       }),
