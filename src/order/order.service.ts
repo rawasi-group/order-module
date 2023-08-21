@@ -48,6 +48,11 @@ export class OrderService {
       where: { user_id },
     });
   }
+  findByReferenceID(reference_id: string) {
+    return this.orderRepo.find({
+      where: { reference_id },
+    });
+  }
 
   update(id: string, updateOrderDto: UpdateOrderDto) {
     console.info(updateOrderDto);
