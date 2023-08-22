@@ -79,7 +79,7 @@ export class OrderService {
     const ids = [];
     orders.map((order) => ids.push(order.id));
     return this.transactionRepo.find({
-      where: { id: In([...ids]) },
+      where: { order_id: In([...ids]) },
     });
   }
   findByReferenceID(reference_id: string): Promise<Order[]> {
