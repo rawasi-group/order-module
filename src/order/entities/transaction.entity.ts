@@ -16,7 +16,7 @@ export class Transaction {
   id: number;
 
   @Column()
-  amount: number;
+  amount: string;
 
   @Column()
   status: number;

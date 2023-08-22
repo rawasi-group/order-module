@@ -4,13 +4,19 @@ import { Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderStatus } from './dto/order.dto';
-import { CreateOrderDto } from './dto/create-order.dto';
+import {
+  CreatedOrderTransactionDto,
+  CreateOrderDto,
+} from './dto/create-order.dto';
+import { Transaction } from './entities/transaction.entity';
 
 @Injectable()
 export class OrderService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepo: Repository<Order>,
+    @InjectRepository(Transaction)
+    private readonly transactionRepo: Repository<Transaction>,
   ) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
@@ -20,6 +26,15 @@ export class OrderService {
     order.reference_id = createOrderDto.reference_id;
     order.user_id = createOrderDto.user_id;
     return await this.orderRepo.save(order);
+  }
+  async createOrderTransaction(
+    createdOrderTransactionDto: CreatedOrderTransactionDto,
+  ) {
+    const transaction = new Transaction();
+    transaction.order_id = createdOrderTransactionDto.order_id;
+    transaction.amount = createdOrderTransactionDto.amount;
+    transaction.payment_method = createdOrderTransactionDto.payment_method;
+    return await this.transactionRepo.save(transaction);
   }
 
   async confirm(id: string) {
