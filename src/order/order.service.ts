@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderStatus } from './dto/order.dto';
@@ -61,9 +61,25 @@ export class OrderService {
       relations: ['order'],
     });
   }
+  findTransactionsByID(id: string) {
+    return this.transactionRepo.find({
+      where: { id },
+      relations: ['order'],
+    });
+  }
   findByUserID(user_id: string) {
     return this.orderRepo.find({
       where: { user_id },
+    });
+  }
+  async findTransactionsByUserID(user_id: string) {
+    const orders = await this.orderRepo.find({
+      where: { user_id },
+    });
+    const ids = [];
+    orders.map((order) => ids.push(order.id));
+    return this.transactionRepo.find({
+      where: { id: In([...ids]) },
     });
   }
   findByReferenceID(reference_id: string): Promise<Order[]> {
