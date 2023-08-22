@@ -89,9 +89,8 @@ export class OrderService {
     });
   }
 
-  update(id: string, updateOrderDto: UpdateOrderDto) {
-    console.info(updateOrderDto);
-    return `This action updates a #${id} order`;
+  async update(id: string, updateOrderDto: UpdateOrderDto) {
+    return await this.transactionRepo.update(id, updateOrderDto);
   }
 
   remove(id: string) {
