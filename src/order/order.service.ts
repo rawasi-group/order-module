@@ -47,8 +47,8 @@ export class OrderService {
       where: { user_id },
     });
   }
-  findByReferenceID(reference_id: string): Promise<Order> {
-    return this.orderRepo.findOne({
+  findByReferenceID(reference_id: string): Promise<Order[]> {
+    return this.orderRepo.find({
       relations: ['transactions'],
       where: { reference_id },
     });
