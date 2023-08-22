@@ -13,7 +13,7 @@ import { Order } from './order.entity';
 @Entity()
 export class Transaction {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   amount: string;

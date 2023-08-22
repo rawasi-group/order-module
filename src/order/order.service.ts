@@ -57,6 +57,12 @@ export class OrderService {
   findOne(id: string) {
     return `This action returns a #${id} order`;
   }
+  async getTransactionById(id: string) {
+    return await this.transactionRepo.findOne({
+      where: { id },
+      relations: ['order'],
+    });
+  }
   findByUserID(user_id: string) {
     return this.orderRepo.find({
       where: { user_id },
