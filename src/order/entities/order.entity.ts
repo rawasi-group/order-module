@@ -23,6 +23,9 @@ export class Order {
   amount: string;
 
   @Column()
+  payment_method: string;
+
+  @Column()
   status: number;
 
   @CreateDateColumn({

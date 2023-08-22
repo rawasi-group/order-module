@@ -37,17 +37,14 @@ export class OrderService {
     return await this.transactionRepo.save(transaction);
   }
 
-  async confirm(id: string) {
-    console.info(id);
-    const order = await this.orderRepo.findOne({
-      where: {
-        id,
-      },
-    });
-
+  async confirm(transaction: Transaction) {
+    const order = transaction.order;
     order.status = OrderStatus.PAID;
+    order.payment_method = transaction.payment_method;
+    transaction.status = OrderStatus.PAID;
 
     await this.orderRepo.save(order);
+    await this.transactionRepo.save(transaction);
   }
 
   findAll() {
