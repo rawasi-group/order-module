@@ -39,6 +39,7 @@ export class OrderService {
 
   async confirm(transaction: Transaction) {
     const order = transaction.order;
+    if (order.status === OrderStatus.PAID) throw new Error('Order Paid Before');
     order.status = OrderStatus.PAID;
     order.payment_method = transaction.payment_method;
     transaction.status = OrderStatus.PAID;
