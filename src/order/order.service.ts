@@ -5,7 +5,6 @@ import { Order } from './entities/order.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderStatus } from './dto/order.dto';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { OrderController } from './order.controller';
 
 @Injectable()
 export class OrderService {
@@ -48,8 +47,9 @@ export class OrderService {
       where: { user_id },
     });
   }
-  findByReferenceID(reference_id: string) {
-    return this.orderRepo.find({
+  findByReferenceID(reference_id: string): Promise<Order> {
+    return this.orderRepo.findOne({
+      relations: ['transactions'],
       where: { reference_id },
     });
   }

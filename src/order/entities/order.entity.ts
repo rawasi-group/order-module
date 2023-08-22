@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Transaction } from './transaction.entity';
 
 @Entity()
 export class Order {
@@ -38,4 +40,7 @@ export class Order {
 
   @DeleteDateColumn()
   public deletedAt: Date;
+
+  @OneToMany(() => Transaction, (transaction) => transaction.order)
+  transactions: Transaction[];
 }
