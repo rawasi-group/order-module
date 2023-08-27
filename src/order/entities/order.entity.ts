@@ -21,7 +21,7 @@ export class Order {
   user_id: string;
 
   @Column()
-  amount: string;
+  amount: number;
 
   @Column()
   payment_method: string;

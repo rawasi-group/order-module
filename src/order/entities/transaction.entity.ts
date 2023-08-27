@@ -17,7 +17,7 @@ export class Transaction {
   id: string;
 
   @Column()
-  amount: string;
+  amount: number;
 
   @Column({ default: OrderStatus.PENDING })
   status: number;
