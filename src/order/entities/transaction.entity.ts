@@ -9,6 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Order } from './order.entity';
+import { OrderStatus } from '../dto/order.dto';
 
 @Entity()
 export class Transaction {
@@ -18,7 +19,7 @@ export class Transaction {
   @Column()
   amount: string;
 
-  @Column()
+  @Column({ default: OrderStatus.PENDING })
   status: number;
 
   @Column()

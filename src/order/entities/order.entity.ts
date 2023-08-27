@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Transaction } from './transaction.entity';
+import { OrderStatus } from '../dto/order.dto';
 
 @Entity()
 export class Order {
@@ -25,7 +26,7 @@ export class Order {
   @Column()
   payment_method: string;
 
-  @Column()
+  @Column({ default: OrderStatus.PENDING })
   status: number;
 
   @CreateDateColumn({

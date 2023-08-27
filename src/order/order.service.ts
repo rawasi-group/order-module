@@ -53,6 +53,12 @@ export class OrderService {
     transaction.status = OrderStatus.REJECTED;
     await this.transactionRepo.save(transaction);
   }
+  async expiry(transaction: Transaction) {
+    if (transaction.status === OrderStatus.REJECTED)
+      throw new Error('Order Rejected Before');
+    transaction.status = OrderStatus.EXPIRED;
+    await this.transactionRepo.save(transaction);
+  }
 
   findAll() {
     return `This action returns all order`;
