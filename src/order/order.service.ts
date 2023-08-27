@@ -48,13 +48,9 @@ export class OrderService {
     await this.transactionRepo.save(transaction);
   }
   async reject(transaction: Transaction) {
-    const order = transaction.order;
-    if (order.status === OrderStatus.REJECTED)
+    if (transaction.status === OrderStatus.REJECTED)
       throw new Error('Order Rejected Before');
-    order.status = OrderStatus.REJECTED;
     transaction.status = OrderStatus.REJECTED;
-
-    await this.orderRepo.save(order);
     await this.transactionRepo.save(transaction);
   }
 
