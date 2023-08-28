@@ -9,6 +9,7 @@ import {
   CreateOrderDto,
 } from './dto/create-order.dto';
 import { Transaction } from './entities/transaction.entity';
+import { TransactionLog } from './entities/transaction_log.entity';
 
 @Injectable()
 export class OrderService {
@@ -17,6 +18,8 @@ export class OrderService {
     private readonly orderRepo: Repository<Order>,
     @InjectRepository(Transaction)
     private readonly transactionRepo: Repository<Transaction>,
+    @InjectRepository(TransactionLog)
+    private readonly transactionLogRepo: Repository<TransactionLog>,
   ) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
@@ -78,6 +81,14 @@ export class OrderService {
       where: { id },
       relations: ['order'],
     });
+  }
+
+  async log_transaction(transaction_id: string, state: string, data: any) {
+    const log = new TransactionLog();
+    log.transaction_id = transaction_id;
+    log.state = state;
+    log.data = data;
+    await this.transactionLogRepo.save(log);
   }
   findByUserID(user_id: string) {
     return this.orderRepo.find({
