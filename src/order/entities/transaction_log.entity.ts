@@ -6,10 +6,13 @@ export class TransactionLog {
   id: number;
 
   @Column()
-  transaction_id: string;
+  reference: string;
 
   @Column()
   state: string;
+
+  @Column()
+  type: string;
 
   @Column({ type: 'json' })
   data: string;

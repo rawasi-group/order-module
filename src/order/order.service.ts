@@ -83,11 +83,17 @@ export class OrderService {
     });
   }
 
-  async log_transaction(transaction_id: string, state: string, data: any) {
+  async log_transaction(
+    reference_id: string,
+    type: string,
+    state: string,
+    data: any,
+  ) {
     const log = new TransactionLog();
-    log.transaction_id = transaction_id;
+    log.reference = reference_id;
     log.state = state;
     log.data = data;
+    log.type = type;
     await this.transactionLogRepo.save(log);
   }
   findByUserID(user_id: string) {
