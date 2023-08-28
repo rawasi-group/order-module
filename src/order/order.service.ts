@@ -83,7 +83,7 @@ export class OrderService {
     });
   }
 
-  async logTransaction(transaction_id: string, state: string, data: any) {
+  async log_transaction(transaction_id: string, state: string, data: any) {
     const log = new TransactionLog();
     log.transaction_id = transaction_id;
     log.state = state;
