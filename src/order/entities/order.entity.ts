@@ -33,17 +33,17 @@ export class Order {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
-  createdAt: Date;
+  create_at: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
-  updatedAt: Date;
+  updated_at: Date;
 
   @DeleteDateColumn()
-  public deletedAt: Date;
+  public deleted_at: Date;
 
   @OneToMany(() => Transaction, (transaction) => transaction.order)
   transactions: Transaction[];

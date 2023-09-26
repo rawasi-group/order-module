@@ -32,17 +32,17 @@ export class Transaction {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
-  updatedAt: Date;
+  updated_at: Date;
 
   @DeleteDateColumn()
-  public deletedAt: Date;
+  public deleted_at: Date;
 
   @ManyToOne(() => Order)
   @JoinColumn({ name: 'order_id' })
