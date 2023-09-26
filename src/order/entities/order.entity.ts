@@ -33,7 +33,7 @@ export class Order {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
-  create_at: Date;
+  created_at: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
