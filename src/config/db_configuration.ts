@@ -1,7 +1,7 @@
-import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-export default (): MysqlConnectionOptions => ({
-  type: 'mysql',
+export default (): TypeOrmModuleOptions => ({
+  type: 'postgres',
   host: process.env.DATABASE_HOST,
   port: +process.env.DATABASE_PORT,
   username: process.env.DATABASE_USER,

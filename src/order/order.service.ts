@@ -28,6 +28,7 @@ export class OrderService {
     order.amount = createOrderDto.amount;
     order.reference_id = createOrderDto.reference_id;
     order.user_id = createOrderDto.user_id;
+    order.payment_method = createOrderDto.payment_method;
     return await this.orderRepo.save(order);
   }
   async createOrderTransaction(
