@@ -38,6 +38,7 @@ export class OrderService {
     transaction.order_id = createdOrderTransactionDto.order_id;
     transaction.amount = createdOrderTransactionDto.amount;
     transaction.payment_method = createdOrderTransactionDto.payment_method;
+    transaction.receipt = createdOrderTransactionDto.receipt;
     return await this.transactionRepo.save(transaction);
   }
 

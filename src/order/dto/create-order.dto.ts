@@ -8,4 +8,5 @@ export class CreatedOrderTransactionDto {
   order_id: string;
   amount: number;
   payment_method: string;
+  receipt?: string;
 }

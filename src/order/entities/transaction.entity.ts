@@ -25,6 +25,9 @@ export class Transaction {
   @Column()
   order_id: string;
 
+  @Column({ nullable: true })
+  receipt: string;
+
   @Column()
   payment_method: string;
 
