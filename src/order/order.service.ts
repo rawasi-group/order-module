@@ -69,8 +69,8 @@ export class OrderService {
     return `This action returns all order`;
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} order`;
+  async findOne(id: string): Promise<Order> {
+    return this.orderRepo.findOne({ where: { id } });
   }
   async getTransactionById(id: string) {
     return await this.transactionRepo.findOne({
